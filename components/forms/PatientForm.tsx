@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,6 +9,7 @@ import { Form } from "@/components/ui/form";
 import CustomFormField from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { UserFormValidation } from "@/lib/validation";
+import { createUser } from "@/lib/actions/patient.actions";
 
 export enum FormFieldType {
   INPUT = "input",
@@ -21,6 +23,7 @@ export enum FormFieldType {
 
 function PatientForm() {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof UserFormValidation>>({
     resolver: zodResolver(UserFormValidation),
@@ -31,8 +34,24 @@ function PatientForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof forUserFormValidationchema>) {
-    console.log(values);
+  async function onSubmit({
+    name,
+    email,
+    phone,
+  }: z.infer<typeof UserFormValidation>) {
+    setIsLoading(true);
+
+    try {
+      const userData = { name, email, phone };
+
+      const newUser = await createUser(userData);
+
+      router.push(`/patients/${newUser.$id}/register`);
+    } catch (error) {
+      console.log(error);
+    }
+
+    setIsLoading(false);
   }
 
   return (
@@ -54,7 +73,7 @@ function PatientForm() {
         <CustomFormField
           fieldType={FormFieldType.INPUT}
           control={form.control}
-          name="name"
+          name="email"
           label="Email"
           placeholder="johndoe@gmail.com"
           iconSrc="/assets/icons/email.svg"
@@ -64,7 +83,7 @@ function PatientForm() {
           fieldType={FormFieldType.PHONE_INPUT}
           control={form.control}
           name="phone"
-          label="Phone Number"
+          label="Phone number"
           placeholder="(555) 123-4567"
         />
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
