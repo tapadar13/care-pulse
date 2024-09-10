@@ -13,6 +13,7 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { E164Number } from "libphonenumber-js/core";
 import ReactDatePicker from "react-datepicker";
+import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 
 interface CustomProps {
   control: Control<any>;
@@ -90,21 +91,21 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
       );
     case FormFieldType.SKELETON:
       return props.renderSkeleton ? props.renderSkeleton(field) : null;
-    // case FormFieldType.SELECT:
-    //   return (
-    //     <FormControl>
-    //       <Select onValueChange={field.onChange} defaultValue={field.value}>
-    //         <FormControl>
-    //           <SelectTrigger className="shad-select-trigger">
-    //             <SelectValue placeholder={props.placeholder} />
-    //           </SelectTrigger>
-    //         </FormControl>
-    //         <SelectContent className="shad-select-content">
-    //           {props.children}
-    //         </SelectContent>
-    //       </Select>
-    //     </FormControl>
-    //   );
+    case FormFieldType.SELECT:
+      return (
+        <FormControl>
+          <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <FormControl>
+              <SelectTrigger className="shad-select-trigger">
+                <SelectValue placeholder={props.placeholder} />
+              </SelectTrigger>
+            </FormControl>
+            <SelectContent className="shad-select-content">
+              {props.children}
+            </SelectContent>
+          </Select>
+        </FormControl>
+      );
     default:
       return null;
   }
