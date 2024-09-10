@@ -81,7 +81,6 @@ export const registerPatient = async ({
       }
     );
     return parseStringify(newPatient);
-    // return
   } catch (error: any) {
     console.log("Erorr", error);
   }
