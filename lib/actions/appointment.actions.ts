@@ -10,7 +10,7 @@ import {
 } from "../appwrite.config";
 import { parseStringify } from "../utils";
 
-//  CREATE APPOINTMENT
+// CREATE APPOINTMENT
 export const createAppointment = async (
   appointment: CreateAppointmentParams
 ) => {
