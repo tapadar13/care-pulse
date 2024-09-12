@@ -97,6 +97,21 @@ export const getRecentAppointmentList = async () => {
   }
 };
 
+// Send SMS notification
+export const sendSMSNotification = async (userId: string, content: string) => {
+  try {
+    const message = await messaging.createSms(
+      ID.unique(),
+      content,
+      [],
+      [userId]
+    );
+    return parseStringify(message);
+  } catch (error) {
+    console.error("An error occurred while sending sms:", error);
+  }
+};
+
 // Update appointment
 export const updateAppointment = async ({
   appointmentId,
@@ -115,25 +130,24 @@ export const updateAppointment = async ({
     if (!updatedAppointment) throw Error("Appointment not updated");
 
     // Send SMS notification
+    const smsMessage = `Greetings from CarePulse. ${
+      type === "schedule"
+        ? `Your appointment is confirmed for ${
+            formatDateTime(appointment.schedule!).dateTime
+          } with Dr. ${
+            appointment.primaryPhysician
+          }. We look forward to seeing you. For any changes or inquiries, please contact us.`
+        : `We regret to inform that your appointment for ${
+            formatDateTime(appointment.schedule!).dateTime
+          } is cancelled. Reason:  ${
+            appointment.cancellationReason
+          }. Please contact us to reschedule or for further assistance. We apologize for any inconvenience.`
+    }.`;
+    await sendSMSNotification(userId, smsMessage);
 
     revalidatePath("/admin");
     return parseStringify(updatedAppointment);
   } catch (error) {
     console.error("An error occurred while scheduling an appointment:", error);
-  }
-};
-
-// Send SMS notification
-export const sendSMSNotification = async (userId: string, content: string) => {
-  try {
-    const message = await messaging.createSms(
-      ID.unique(),
-      content,
-      [],
-      [userId]
-    );
-    return parseStringify(message);
-  } catch (error) {
-    console.error("An error occurred while sending sms:", error);
   }
 };
