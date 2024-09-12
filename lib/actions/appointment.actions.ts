@@ -7,11 +7,12 @@ import {
   APPOINTMENT_COLLECTION_ID,
   DATABASE_ID,
   databases,
+  messaging,
 } from "../appwrite.config";
 import { formatDateTime, parseStringify } from "../utils";
 import { Appointment } from "@/types/appwrite.types";
 
-// CREATE APPOINTMENT
+// Create appontment
 export const createAppointment = async (
   appointment: CreateAppointmentParams
 ) => {
@@ -30,7 +31,7 @@ export const createAppointment = async (
   }
 };
 
-// GET APPOINTMENT
+// Get appointment
 export const getAppointment = async (appointmentId: string) => {
   try {
     const appointment = await databases.getDocument(
@@ -119,5 +120,20 @@ export const updateAppointment = async ({
     return parseStringify(updatedAppointment);
   } catch (error) {
     console.error("An error occurred while scheduling an appointment:", error);
+  }
+};
+
+// Send SMS notification
+export const sendSMSNotification = async (userId: string, content: string) => {
+  try {
+    const message = await messaging.createSms(
+      ID.unique(),
+      content,
+      [],
+      [userId]
+    );
+    return parseStringify(message);
+  } catch (error) {
+    console.error("An error occurred while sending sms:", error);
   }
 };
