@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -19,9 +20,8 @@ import {
   IdentificationTypes,
   PatientFormDefaultValues,
 } from "@/constants";
-import { SelectItem } from "@radix-ui/react-select";
-import Image from "next/image";
 import { FileUploader } from "../FileUploader";
+import { SelectItem } from "../ui/select";
 
 function RegisterForm({ user }: { user: User }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -94,6 +94,8 @@ function RegisterForm({ user }: { user: User }) {
     setIsLoading(false);
   }
 
+  console.log(form.watch("primaryPhysician")); // Logs the selected value
+
   return (
     <Form {...form}>
       <form
@@ -101,13 +103,13 @@ function RegisterForm({ user }: { user: User }) {
         className="space-y-12 flex-1"
       >
         <section className="space-y-4">
-          <h1 className="header">Welcome 👋</h1>
+          <h1 className="header text-white">Welcome 👋</h1>
           <p className="text-dark-700">Let us know more about yourself</p>
         </section>
 
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
-            <h2 className="sub-header">Personal Information</h2>
+            <h2 className="sub-header text-white">Personal Information</h2>
           </div>
 
           <CustomFormField

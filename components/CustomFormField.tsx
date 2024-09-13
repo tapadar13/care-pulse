@@ -105,14 +105,17 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
     case FormFieldType.SKELETON:
       return props.renderSkeleton ? props.renderSkeleton(field) : null;
     case FormFieldType.SELECT:
+      console.log("Select field value:", field.value);
       return (
         <FormControl>
-          <Select onValueChange={field.onChange} defaultValue={field.value}>
-            <FormControl>
-              <SelectTrigger className="shad-select-trigger">
-                <SelectValue placeholder={props.placeholder} />
-              </SelectTrigger>
-            </FormControl>
+          <Select
+            onValueChange={field.onChange}
+            // defaultValue={field.value}
+            value={field.value}
+          >
+            <SelectTrigger className="shad-select-trigger">
+              <SelectValue placeholder={props.placeholder} />
+            </SelectTrigger>
             <SelectContent className="shad-select-content">
               {props.children}
             </SelectContent>
