@@ -94,8 +94,6 @@ function RegisterForm({ user }: { user: User }) {
     setIsLoading(false);
   }
 
-  console.log(form.watch("primaryPhysician")); // Logs the selected value
-
   return (
     <Form {...form}>
       <form
