@@ -110,8 +110,9 @@ export const AppointmentForm = ({
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   let buttonLabel;
