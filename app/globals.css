@@ -34,6 +34,38 @@
   textarea::placeholder {
     @apply text-dark-600;
   }
+
+  /* Phone input custom styles */
+  .PhoneInputCountrySelect {
+    @apply bg-dark-400 text-white border-dark-500;
+  }
+
+  .PhoneInputCountrySelectArrow {
+    @apply border-t-white;
+  }
+
+  .PhoneInputCountrySelect option {
+    @apply bg-dark-400 text-white;
+  }
+
+  /* Dropdown styles */
+  .PhoneInputCountrySelectDropdown {
+    @apply bg-dark-400 text-white border-dark-500;
+  }
+
+  .PhoneInputCountrySelectOption {
+    @apply hover:bg-dark-500;
+  }
+}
+
+/* Increase specificity for dropdown */
+body .PhoneInputCountrySelect,
+body .PhoneInputCountrySelectDropdown {
+  @apply bg-dark-400 text-white border-dark-500;
+}
+
+body .PhoneInputCountrySelectOption:hover {
+  @apply bg-dark-500;
 }
 
 @layer utilities {

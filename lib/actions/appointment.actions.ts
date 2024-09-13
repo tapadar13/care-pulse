@@ -136,12 +136,12 @@ export const updateAppointment = async ({
             formatDateTime(appointment.schedule!).dateTime
           } with Dr. ${
             appointment.primaryPhysician
-          }. We look forward to seeing you. For any changes or inquiries, please contact us.`
+          }. We look forward to seeing you. For any changes or inquiries, please contact us`
         : `We regret to inform that your appointment for ${
             formatDateTime(appointment.schedule!).dateTime
           } is cancelled. Reason:  ${
             appointment.cancellationReason
-          }. Please contact us to reschedule or for further assistance. We apologize for any inconvenience.`
+          }. Please contact us to reschedule or for further assistance. We apologize for any inconvenience`
     }.`;
     await sendSMSNotification(userId, smsMessage);
 
