@@ -2,7 +2,7 @@
 
 Care Pulse is a comprehensive Healthcare Management System enabling patient registration and appointment booking. This system streamlines patient registration, appointment booking, and administrative tasks for healthcare providers.
 
-![Care Pulse](/assets/images/care-pulse.png)
+![Care Pulse](/public/assets/images/care-pulse.png)
 
 ## Tech Stack 📚
 
