@@ -71,6 +71,7 @@ function PatientForm() {
           placeholder="John Doe"
           iconSrc="/assets/icons/user.svg"
           iconAlt="user"
+          required={true}
         />
         <CustomFormField
           fieldType={FormFieldType.INPUT}
@@ -80,6 +81,7 @@ function PatientForm() {
           placeholder="johndoe@gmail.com"
           iconSrc="/assets/icons/email.svg"
           iconAlt="email"
+          required={true}
         />
         <CustomFormField
           fieldType={FormFieldType.PHONE_INPUT}
@@ -87,6 +89,7 @@ function PatientForm() {
           name="phone"
           label="Phone number"
           placeholder="(555) 123-4567"
+          required={true}
         />
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
       </form>

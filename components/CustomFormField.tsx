@@ -30,6 +30,7 @@ interface CustomProps {
   showTimeSelect?: boolean;
   children?: React.ReactNode;
   renderSkeleton?: (field: any) => React.ReactNode;
+  required?: boolean;
 }
 
 const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
@@ -142,7 +143,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
 };
 
 const CustomFormField = (props: CustomProps) => {
-  const { control, fieldType, name, label } = props;
+  const { control, fieldType, name, label, required } = props;
 
   return (
     <FormField
@@ -151,7 +152,15 @@ const CustomFormField = (props: CustomProps) => {
       render={({ field }) => (
         <FormItem className="flex-1">
           {fieldType !== FormFieldType.CHECKBOX && label && (
-            <FormLabel className="shad-input-label">{label}</FormLabel>
+            <FormLabel className="shad-input-label">
+              {label}{" "}
+              {required && (
+                <span className="text-red-500 ml-1" aria-hidden="true">
+                  *
+                </span>
+              )}
+              {required && <span className="sr-only">(required)</span>}
+            </FormLabel>
           )}
 
           <RenderField field={field} props={props} />

@@ -147,6 +147,7 @@ export const AppointmentForm = ({
               name="primaryPhysician"
               label="Doctor"
               placeholder="Select a doctor"
+              required={true}
             >
               {Doctors.map((doctor, i) => (
                 <SelectItem key={doctor.name + i} value={doctor.name}>
@@ -171,6 +172,7 @@ export const AppointmentForm = ({
               label="Expected appointment date"
               showTimeSelect
               dateFormat="MM/dd/yyyy  -  h:mm aa"
+              required={true}
             />
 
             <div
@@ -185,6 +187,7 @@ export const AppointmentForm = ({
                 label="Appointment reason"
                 placeholder="Annual monthly check-up"
                 disabled={type === "schedule"}
+                required={type === "create"}
               />
 
               <CustomFormField
@@ -206,6 +209,7 @@ export const AppointmentForm = ({
             name="cancellationReason"
             label="Reason for cancellation"
             placeholder="Urgent meeting came up"
+            required={true}
           />
         )}
 

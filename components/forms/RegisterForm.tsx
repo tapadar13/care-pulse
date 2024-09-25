@@ -118,6 +118,7 @@ function RegisterForm({ user }: { user: User }) {
             placeholder="John Doe"
             iconSrc="/assets/icons/user.svg"
             iconAlt="user"
+            required={true}
           />
 
           <div className="flex flex-col gap-6 xl:flex-row">
@@ -129,6 +130,7 @@ function RegisterForm({ user }: { user: User }) {
               placeholder="johndoe@gmail.com"
               iconSrc="/assets/icons/email.svg"
               iconAlt="email"
+              required={true}
             />
 
             <CustomFormField
@@ -137,6 +139,7 @@ function RegisterForm({ user }: { user: User }) {
               name="phone"
               label="Phone Number"
               placeholder="(555) 123-4567"
+              required={true}
             />
           </div>
 
@@ -146,6 +149,7 @@ function RegisterForm({ user }: { user: User }) {
               control={form.control}
               name="birthDate"
               label="Date of birth"
+              required={true}
             />
 
             <CustomFormField
@@ -153,6 +157,7 @@ function RegisterForm({ user }: { user: User }) {
               control={form.control}
               name="gender"
               label="Gender"
+              required={true}
               renderSkeleton={(field) => (
                 <FormControl>
                   <RadioGroup
@@ -182,6 +187,7 @@ function RegisterForm({ user }: { user: User }) {
               name="address"
               label="Address"
               placeholder="123 MG Road, Mumbai"
+              required={true}
             />
 
             <CustomFormField
@@ -190,6 +196,7 @@ function RegisterForm({ user }: { user: User }) {
               name="occupation"
               label="Occupation"
               placeholder=" Software Engineer"
+              required={true}
             />
           </div>
 
@@ -201,6 +208,7 @@ function RegisterForm({ user }: { user: User }) {
               name="emergencyContactName"
               label="Emergency contact name"
               placeholder="Guardian's name"
+              required={true}
             />
 
             <CustomFormField
@@ -209,6 +217,7 @@ function RegisterForm({ user }: { user: User }) {
               name="emergencyContactNumber"
               label="Emergency contact number"
               placeholder="91 98765 43210"
+              required={true}
             />
           </div>
         </section>
@@ -225,6 +234,7 @@ function RegisterForm({ user }: { user: User }) {
             name="primaryPhysician"
             label="Primary care physician"
             placeholder="Select a physician"
+            required={true}
           >
             {Doctors.map((doctor, i) => (
               <SelectItem key={doctor.name + i} value={doctor.name}>
@@ -250,6 +260,7 @@ function RegisterForm({ user }: { user: User }) {
               name="insuranceProvider"
               label="Insurance provider"
               placeholder="Max Bupa Health"
+              required={true}
             />
 
             <CustomFormField
@@ -258,6 +269,7 @@ function RegisterForm({ user }: { user: User }) {
               name="insurancePolicyNumber"
               label="Insurance policy number"
               placeholder="POL123456789"
+              required={true}
             />
           </div>
 
@@ -332,6 +344,7 @@ function RegisterForm({ user }: { user: User }) {
             control={form.control}
             name="identificationDocument"
             label="Scanned Copy of Identification Document"
+            required={true}
             renderSkeleton={(field) => (
               <FormControl>
                 <FileUploader files={field.value} onChange={field.onChange} />
@@ -350,6 +363,7 @@ function RegisterForm({ user }: { user: User }) {
             control={form.control}
             name="treatmentConsent"
             label="I consent to receive treatment for my health condition."
+            required={true}
           />
 
           <CustomFormField
@@ -358,6 +372,7 @@ function RegisterForm({ user }: { user: User }) {
             name="disclosureConsent"
             label="I consent to the use and disclosure of my health
             information for treatment purposes."
+            required={true}
           />
 
           <CustomFormField
@@ -366,6 +381,7 @@ function RegisterForm({ user }: { user: User }) {
             name="privacyConsent"
             label="I acknowledge that I have reviewed and agree to the
             privacy policy"
+            required={true}
           />
         </section>
 
